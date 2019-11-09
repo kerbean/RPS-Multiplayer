@@ -5,10 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="google-signin-client_id"
+        content="477687585906-4ohrp0k09aa2nrei9r0mlllgqjuvccrk.apps.googleusercontent.com.apps.googleusercontent.com">
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a1562d6d36.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>Rock Paper Scissors!</title>
 </head>
 
 <body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div class="container my-5">
+        <div class="float-right">
+            test
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <input type="image" src="assets/images/rock.gif"></input>
+            </div>
+            <div class="col-lg-6 mx-auto">
+                Waiting for opponent
+            </div>
+            <!-- <div class="col-lg-3">
+
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <input type="image" src="assets/images/paper.gif"></input>
+            </div>
+            <!-- <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-3">
+
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <input type="image" src="assets/images/scissors.gif"></input>
+            </div>
+            <!-- <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-3">
+
+            </div> -->
+        </div>
+    </div>
 
 </body>
 
