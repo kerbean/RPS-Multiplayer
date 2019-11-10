@@ -78,12 +78,14 @@ $(document).ready(function () {
     // }
 
     function onSignIn(googleUser) {
+        console.log("onSignIn");
         console.log('Google Auth Response', googleUser);
         // We need to register an Observer on Firebase Auth to make sure auth is initialized.
         var unsubscribe = firebase.auth().onAuthStateChanged(function (firebaseUser) {
             unsubscribe();
             // Check if we are already signed-in Firebase with the correct user.
             if (!isUserEqual(googleUser, firebaseUser)) {
+                console.log("here2");
                 // Build Firebase credential with the Google ID token.
                 var credential = firebase.auth.GoogleAuthProvider.credential(
                     googleUser.getAuthResponse().id_token);
@@ -91,6 +93,7 @@ $(document).ready(function () {
 
                 var user = firebase.auth().currentUser;
                 if (user) {
+                    console.log("here1");
                     var name, email, photoUrl, uid, emailVerified;
                     if (user != null) {
                         name = user.displayName;
