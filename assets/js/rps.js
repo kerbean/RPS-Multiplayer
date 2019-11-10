@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    console.log("javascript working");
+    console.log("javascript working 1.0");
 
     openLogin();
 
