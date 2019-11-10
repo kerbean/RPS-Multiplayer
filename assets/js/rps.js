@@ -155,9 +155,9 @@ $(document).ready(function () {
                 // Sign in with credential from the Google user.
 
                 var user = firebase.auth().currentUser;
+                var name, email, photoUrl, uid, emailVerified;
                 if (user) {
                     console.log("here1");
-                    var name, email, photoUrl, uid, emailVerified;
                     if (user != null) {
                         name = user.displayName;
                         email = user.email;
