@@ -19,15 +19,7 @@ $(document).ready(function () {
     database = firebase.database();
 
     database.ref().on("value", function (snapshot) {
-
-        // if (snapshot.val().highPrice && snapshot.val().highBidder) {
-        //     highPrice = snapshot.val().highPrice;
-        //     highBidder = snapshot.val().highBidder;
-        // }
-
-        // $("#highest-bidder").text(highPrice);
-        // $("#highest-price").text(highBidder);
-
+        console.log("testsnapshot");
     }, function errorMsg(error) {
         console.log(error);
     });
