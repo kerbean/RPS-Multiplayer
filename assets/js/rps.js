@@ -111,12 +111,18 @@ $(document).ready(function () {
     // $(".open-button").on("click", function () {
     //     $("#myForm").css("display", "block");
     // });
+    $(".continue").on("click", function () {
+        closeForm();
+    })
+
+
     function openLogin() {
         $("#myForm").css("display", "block");
     }
 
     function closeForm() {
         $("#myForm").css("display", "none");
+        $(".container").css("display", "block");
     }
 
     function showContainer() {
