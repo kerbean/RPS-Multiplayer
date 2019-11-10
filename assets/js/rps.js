@@ -20,13 +20,13 @@ $(document).ready(function () {
 
     database.ref().on("value", function (snapshot) {
 
-        if (snapshot.val().highPrice && snapshot.val().highBidder) {
-            highPrice = snapshot.val().highPrice;
-            highBidder = snapshot.val().highBidder;
-        }
+        // if (snapshot.val().highPrice && snapshot.val().highBidder) {
+        //     highPrice = snapshot.val().highPrice;
+        //     highBidder = snapshot.val().highBidder;
+        // }
 
-        $("#highest-bidder").text(highPrice);
-        $("#highest-price").text(highBidder);
+        // $("#highest-bidder").text(highPrice);
+        // $("#highest-price").text(highBidder);
 
     }, function errorMsg(error) {
         console.log(error);
