@@ -2,6 +2,8 @@ $(document).ready(function () {
 
     console.log("javascript working");
 
+    openLogin();
+
     var firebaseConfig = {
         apiKey: "AIzaSyDZwxwL_PbIzAz1I4m3U1SfapOKxL2mI0Y",
         authDomain: "pomodoro-algo.firebaseapp.com",
@@ -15,6 +17,43 @@ $(document).ready(function () {
     firebase.initializeApp(firebaseConfig);
 
     database = firebase.database();
+
+    database.ref().on("value", function (snapshot) {
+
+        if (snapshot.val().highPrice && snapshot.val().highBidder) {
+            highPrice = snapshot.val().highPrice;
+            highBidder = snapshot.val().highBidder;
+        }
+
+        $("#highest-bidder").text(highPrice);
+        $("#highest-price").text(highBidder);
+
+    }, function errorMsg(error) {
+        console.log(error);
+    });
+
+    var connectionsRef = database.ref("/connections");
+
+    // '.info/connected' is a special location provided by Firebase that is updated every time
+    // the client's connection state changes.
+    // '.info/connected' is a boolean value, true if the client is connected and false if they are not.
+    var connectedRef = database.ref(".info/connected");
+
+    // When the client's connection state changes...
+    connectedRef.on("value", function (snap) {
+
+        // If they are connected..
+        if (snap.val()) {
+
+            // Add user to the connections list.
+            var con = connectionsRef.push(true);
+
+            // Remove user from the connection list when they disconnect.
+            con.onDisconnect().remove();
+        }
+    });
+
+
 
     openLogin();
 
@@ -69,6 +108,7 @@ $(document).ready(function () {
                         uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
                         // this value to authenticate with your backend server, if
                         // you have one. Use User.getToken() instead.
+                        $(".welcome-note").append(name + "!");
                         showContainer();
 
                     }
