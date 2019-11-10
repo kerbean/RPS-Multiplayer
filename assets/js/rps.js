@@ -57,6 +57,24 @@ $(document).ready(function () {
                 var credential = firebase.auth.GoogleAuthProvider.credential(
                     googleUser.getAuthResponse().id_token);
                 // Sign in with credential from the Google user.
+
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    var name, email, photoUrl, uid, emailVerified;
+                    if (user != null) {
+                        name = user.displayName;
+                        email = user.email;
+                        photoUrl = user.photoURL;
+                        emailVerified = user.emailVerified;
+                        uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                        // this value to authenticate with your backend server, if
+                        // you have one. Use User.getToken() instead.
+
+                    }
+                } else {
+                    console.log("NO USER IS SIGNED-IN!");
+                }
+
                 firebase.auth().signInWithCredential(credential).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -70,7 +88,22 @@ $(document).ready(function () {
             } else {
                 console.log('User already signed-in Firebase.');
             }
+
         });
+    }
+
+    function isUserEqual(googleUser, firebaseUser) {
+        if (firebaseUser) {
+            var providerData = firebaseUser.providerData;
+            for (var i = 0; i < providerData.length; i++) {
+                if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+                    providerData[i].uid === googleUser.getBasicProfile().getId()) {
+                    // We don't need to reauth the Firebase connection.
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
@@ -81,9 +114,12 @@ $(document).ready(function () {
         $("#myForm").css("display", "block");
     }
 
-
     function closeForm() {
-        $("#myForm").style.display = "none";
+        $("#myForm").css("display", "none");
+    }
+
+    function showContainer() {
+        $(".container").css("display", "block");
     }
 
 
