@@ -45,23 +45,18 @@ $(document).ready(function () {
         }
     });
 
-    firebase.initializeApp({
-        apiKey: 'AIza…',
-        authDomain: '<PROJECT_ID>.firebasepp.com'
-    });
-
     // As httpOnly cookies are to be used, do not persist any state client side.
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
     // When the user signs in with email and password.
     firebase.auth().signInWithEmailAndPassword('user@example.com', 'password').then(user => {
         // Get the user's ID token as it is needed to exchange for a session cookie.
-        return user.getIdToken().then(idToken = > {
+        return user.getIdToken().then(idToken => {
             // Session login endpoint is queried and the session cookie is set.
             // CSRF protection should be taken into account.
             // ...
             const csrfToken = getCookie('csrfToken')
-          return postIdTokenToSessionLogin('/sessionLogin', idToken, csrfToken);
+            return postIdTokenToSessionLogin('/sessionLogin', idToken, csrfToken);
         });
     }).then(() => {
         // A page redirect would suffice as the persistence is set to NONE.
