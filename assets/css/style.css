@@ -1,5 +1,5 @@
 input{
-    height:150px;
+    height:100px;
 }
 
 /* object{
@@ -20,9 +20,35 @@ object{
     height: 500px;
 }
 
+.chatbox{
+  overflow-y: scroll;
+    height: 200px;
+    resize: none;
+}
+
 .container{
     position:absolute;
     display:none;
+}
+
+#waitplayer{
+  position:absolute;
+  display:none;
+}
+
+#myForm{
+  position:absolute;
+  display:block;
+}
+
+#dcplayer{
+  position:absolute;
+  display:none;
+}
+
+#maxplayer{
+  position:absolute;
+  display:none;
 }
 
 .container-popup{

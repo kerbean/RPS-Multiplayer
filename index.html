@@ -17,14 +17,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="/__/firebase/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
 
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="/__/firebase/7.2.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
 
     <!-- Add Firebase products that you want to use -->
-    <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
-    <script src="/__/firebase/7.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="./assets/js/rps.js"></script>
 
@@ -37,42 +38,74 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="/action_page.php" class="form-container">
+                <form class="form-container">
                     <h1>Login</h1>
 
                     <label for="email"><b>Guest Name:</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-
-
-                    <button type="submit" class="btn">Login</button>
+                    <input id="user-name" type="text" placeholder="Enter user name">
+                    <button type="button" id="login" class="btn">Login</button>
                     <label class="mt-3 mb-1">Or Sign-in with Google</label>
                     <div class="text-center">
-                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                        <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
                     </div>
-                    <button type="button" class="btn continue">Continue</button>
+                    <button type="button" id="continue" class="btn continue">Continue</button>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron pagination-centered" id="dcplayer">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <p>
+                    OTHER USER DISCONNECTED. PLEASE WAIT FOR A 2ND USER.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron pagination-centered" id="waitplayer">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <p>
+                    WAITING FOR 2ND USER.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron pagination-centered" id="maxplayer">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <p>
+                    MAX PLAYERS REACHED!!! PLEASE WAIT FOR YOUR TURN.
+                </p>
             </div>
         </div>
     </div>
     <!-- <object data="index2.html">t</object> -->
     <div class="container my-5">
         <div class="float-right">
-            <div class="welcome-note">WELCOME, </div>
+            <div class="welcome-note"></div>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <input type="image" src="assets/images/rock.gif"></input>
+                <input id="rock" type="image" src="assets/images/rock.gif"></input>
             </div>
             <div class="col-lg-6 mx-auto">
-                Waiting for opponent
+                <p class="users-connected"></p>
+                <p class="chosen"></p>
+                <p class="enemy-chosen"></p>
+                <p class="turn-result"></p>
             </div>
+
             <!-- <div class="col-lg-3">
 
             </div> -->
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <input type="image" src="assets/images/paper.gif"></input>
+                <input id="paper" type="image" src="assets/images/paper.gif"></input>
             </div>
             <!-- <div class="col-lg-3">
 
@@ -86,7 +119,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <input type="image" src="assets/images/scissors.gif"></input>
+                <input id="scissors" type="image" src="assets/images/scissors.gif"></input>
             </div>
             <!-- <div class="col-lg-6">
 
@@ -95,6 +128,29 @@
 
             </div> -->
         </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <p id="chabox" class="chatbox border border-info">
+                    TEXT
+                </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <textarea id="chat-mes" rows="5"></textarea>
+            </div>
+            <div class="col-lg-1">
+                <button class="send">SEND</button>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-3">
+
+            </div> -->
+
     </div>
 
 </body>
